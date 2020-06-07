@@ -1,6 +1,6 @@
-package no.unit.foo;
+package no.unit.examplepackage;
 
-public class Foobar {
+public class ExampleClass {
 
     private String field;
 

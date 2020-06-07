@@ -3,6 +3,7 @@ plugins {
     id 'jacoco'
     id 'checkstyle'
     id 'pmd'
+    id "nebula.lint" version "16.9.0"
 
 }
 
@@ -20,7 +21,8 @@ wrapper{
 def jupiterVersion = "5.6.0"
 dependencies {
 
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: jupiterVersion
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jupiterVersion
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jupiterVersion
     testImplementation group: 'org.hamcrest', name: 'hamcrest', version: '2.2'
 
 }
@@ -81,4 +83,8 @@ jacocoTestCoverageVerification {
             }
         }
     }
+}
+
+gradleLint {
+    rules  = ['all-dependency','duplicate-dependency-class']
 }
