@@ -14,17 +14,17 @@ public class ExampleClassTest {
     @Test
     void setFieldSetsTheFieldValue() {
         String insertedValue = "SomeValue";
-        ExampleClass foo = new ExampleClass();
-        foo.setField(insertedValue);
-        String actualValue = foo.getField();
+        ExampleClass exampleObj = new ExampleClass();
+        exampleObj.setField(insertedValue);
+        String actualValue = exampleObj.getField();
         assertThat(actualValue, is(equalTo(insertedValue)));
     }
 
     @DisplayName("getField returns null when value has not been set")
     @Test
     void getFieldSReturnsNullWhenValueHasNotBeenSet() {
-        ExampleClass foo = new ExampleClass();
-        String actualValue = foo.getField();
+        ExampleClass exampleObj = new ExampleClass();
+        String actualValue = exampleObj.getField();
         assertThat(actualValue, is(nullValue()));
     }
 
@@ -32,9 +32,9 @@ public class ExampleClassTest {
     @Test
     void getFieldReturnsTheSetValueWhenTheValueHasBeenSet() {
         String insertedValue = "SomeValue";
-        ExampleClass foo = new ExampleClass();
-        foo.setField(insertedValue);
-        String actualValue = foo.getField();
+        ExampleClass exampleObj = new ExampleClass();
+        exampleObj.setField(insertedValue);
+        String actualValue = exampleObj.getField();
         assertThat(actualValue, is(equalTo(insertedValue)));
     }
 }
