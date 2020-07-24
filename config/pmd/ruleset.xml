@@ -57,7 +57,12 @@
     <!-- Sometimes it is useful in debugging to assign the return value to a local variable  -->
     <exclude name="UnnecessaryLocalBeforeReturn"/>
 
+  </rule>
 
+  <rule ref="category/java/codestyle.xml/ShortClassName">
+    <properties>
+      <property name="minimum" value="3" />
+    </properties>
   </rule>
 
 

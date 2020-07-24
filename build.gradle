@@ -3,7 +3,7 @@ plugins {
     id 'jacoco'
     id 'checkstyle'
     id 'pmd'
-    id "nebula.lint" version "16.9.0"
+//    id "nebula.lint" version "16.9.0"
 
 }
 
@@ -12,18 +12,35 @@ targetCompatibility = JavaVersion.VERSION_11
 
 repositories {
     jcenter()
+    maven { url "https://jitpack.io" }
 }
 
-wrapper{
-    gradleVersion= "6.5"
+wrapper {
+    gradleVersion = "6.5"
 }
 
+def jacksonVersion = '2.11.1'
 def jupiterVersion = "5.6.0"
+def immutablesVersion = "2.8.2"
 dependencies {
+
+    implementation group: 'com.github.BIBSYSDEV', name: 'nva-commons', version: '0.4.1'
+
+    //this is important
+    annotationProcessor group: 'org.immutables', name: 'value', version: "$immutablesVersion"
+    compileOnly group: 'org.immutables', name: 'value', version: immutablesVersion
+
+
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jacksonVersion
+    testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jupiterVersion
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jupiterVersion
     testImplementation group: 'org.hamcrest', name: 'hamcrest', version: '2.2'
+
+    testImplementation group: 'com.github.BIBSYSDEV', name:'nva-testutils', version:'0.1.12'
+
 
 }
 
@@ -62,8 +79,8 @@ tasks.withType(Checkstyle) {
 }
 
 // jacoco configuration
-check.dependsOn jacocoTestCoverageVerification
-jacocoTestCoverageVerification.dependsOn(jacocoTestReport)
+//check.dependsOn jacocoTestCoverageVerification
+//jacocoTestCoverageVerification.dependsOn(jacocoTestReport)
 
 jacocoTestCoverageVerification {
     violationRules {
@@ -85,6 +102,6 @@ jacocoTestCoverageVerification {
     }
 }
 
-gradleLint {
-    rules  = ['all-dependency','duplicate-dependency-class']
-}
+//gradleLint {
+//    rules = ['all-dependency', 'duplicate-dependency-class']
+//}
